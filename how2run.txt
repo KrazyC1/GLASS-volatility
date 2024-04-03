@@ -1,0 +1,5 @@
+step 1: Install volatility through pip
+run this command - pip install volatility3
+
+step 2: Run this command to start the plugin
+vol.exe -f "C:\Users\clayb\OneDrive\Desktop\CIS 430 - Computer & Cyber Forensics\lab3.raw" -p . plugin.BankScanner
