@@ -3,8 +3,16 @@ from volatility3.framework import interfaces, constants, renderers
 from volatility3.framework.configuration import requirements
 from volatility3.framework.layers import scanners
 from volatility3.plugins.windows import pslist
+
+#langaugeID imports
+from langdetect import detect_langs #pip install langdetect ---- for some reason BankScanner does not work when this command is not done and langdetect is imported.
+import argparse
+import psutil #pip install psutil
+import ctypes
+
 import string
 import os
+
 
 class BankScanner(interfaces.plugins.PluginInterface):
     """Searches the memory dump for the string 'bank'."""
@@ -57,3 +65,75 @@ class BankScanner(interfaces.plugins.PluginInterface):
             ],
             self._generator()
         )
+        
+        
+        
+class GLASS(interfaces.plugins.PluginInterface):
+    """Custom GLASS plugin with language identification functionality."""
+
+    _required_framework_version = (2, 0, 0)
+
+    @classmethod
+    def get_requirements(cls) -> List[interfaces.configuration.RequirementInterface]:
+        return [
+            requirements.IntRequirement(name='pid', description='Process ID', optional=False),
+            requirements.BooleanRequirement(name='langID', description='Language identification', default=False),
+        ]
+        
+    def get_process_text_from_memory(self, pid: int) -> str:
+        """Retrieve process text from memory based on PID."""
+        
+        process_text = ""
+        try:
+            process = psutil.Process(pid)
+            process_memory = process.memory_info()
+        
+            # Read process memory using ctypes
+            process_handle = ctypes.windll.kernel32.OpenProcess(0x0010, False, pid)  # 0x0010 = PROCESS_VM_READ
+            if process_handle:
+                buffer = ctypes.create_string_buffer(process_memory.rss)
+                bytes_read = ctypes.c_size_t()
+                if ctypes.windll.kernel32.ReadProcessMemory(process_handle, process_memory.addr, buffer, process_memory.rss, ctypes.byref(bytes_read)):
+                    process_text = buffer.raw.decode('utf-8', errors='ignore')
+                    process_text = process_text[:1000]  # Limit to first 1000 characters for demonstration
+                ctypes.windll.kernel32.CloseHandle(process_handle)
+        except psutil.NoSuchProcess:
+            process_text = f"Process with PID {pid} not found"
+        except psutil.AccessDenied:
+            process_text = f"Access denied to process with PID {pid}"
+    
+        return process_text
+
+    def run(self) -> interfaces.renderers.TreeGrid:
+        """Runs the plugin and returns the language distribution."""
+        
+        pid = self.config.get('pid')
+        lang_id_requested = self.config.get('langID', False)
+        
+        if pid is None:
+            return renderers.TreeGrid([], [])
+        
+        # Placeholder code for retrieving process text from memory (replace with actual logic)
+        #process_text = "Sample text from process memory"
+        
+        if lang_id_requested:
+            # Perform language identification using langdetect
+            lang_results = detect_langs(process_text)
+            language_distribution = {lang.lang: lang.prob for lang in lang_results}
+            return renderers.TreeGrid(
+                [("Language", str), ("Probability", float)],
+                [(lang, prob) for lang, prob in language_distribution.items()]
+            )
+        else:
+            # Return process text without language identification
+            return renderers.TreeGrid(
+                [("Process Text", str)],
+                [(process_text,)]
+            )
+
+
+
+    
+
+
+        

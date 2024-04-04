@@ -1,0 +1,157 @@
+24-04-03 21:34:54 volatility3.cli INFO     Logging started
+24-04-03 21:34:54 volatility3.cli INFO     Volatility plugins path: ['C:\\Users\\jmbau\\.vscode\\volatility_plugin\\GLASS-volatility\\lugins', 'C:\\Users\\jmbau\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\volatility3\\plugins', 'C:\\Users\\jmbau\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\volatility3\\framework\\plugins']
+24-04-03 21:34:54 volatility3.cli INFO     Volatility symbols path: ['C:\\Users\\jmbau\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\volatility3\\symbols', 'C:\\Users\\jmbau\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\volatility3\\framework\\symbols']
+24-04-03 21:34:54 volatility3.framework Level 6  Importing from the following paths: C:\Users\jmbau\.vscode\volatility_plugin\GLASS-volatility\lugins, C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\plugins, C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins
+24-04-03 21:34:54 volatility3.plugins.yarascan INFO     Python Yara (>3.8.0) module not found, plugin (and dependent plugins) not available
+24-04-03 21:34:54 volatility3.framework DEBUG    Traceback (most recent call last):
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\__init__.py", line 185, in import_file
+    importlib.import_module(module)
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1149, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\yarascan.py", line 17, in <module>
+    import yara
+ModuleNotFoundError: No module named 'yara'
+
+24-04-03 21:34:54 volatility3.framework DEBUG    Failed to import module volatility3.plugins.yarascan based on file: C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\yarascan.py
+24-04-03 21:34:54 volatility3.plugins.yarascan INFO     Python Yara (>3.8.0) module not found, plugin (and dependent plugins) not available
+24-04-03 21:34:54 volatility3.framework DEBUG    Traceback (most recent call last):
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\__init__.py", line 185, in import_file
+    importlib.import_module(module)
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1149, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\linux\vmayarascan.py", line 10, in <module>
+    from volatility3.plugins import yarascan
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\yarascan.py", line 17, in <module>
+    import yara
+ModuleNotFoundError: No module named 'yara'
+
+24-04-03 21:34:54 volatility3.framework DEBUG    Failed to import module volatility3.plugins.linux.vmayarascan based on file: C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\linux\vmayarascan.py
+24-04-03 21:34:54 volatility3.framework DEBUG    Traceback (most recent call last):
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\__init__.py", line 185, in import_file
+    importlib.import_module(module)
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1149, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\windows\cachedump.py", line 8, in <module>
+    from Crypto.Cipher import ARC4, AES
+ModuleNotFoundError: No module named 'Crypto'
+
+24-04-03 21:34:54 volatility3.framework DEBUG    Failed to import module volatility3.plugins.windows.cachedump based on file: C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\windows\cachedump.py
+24-04-03 21:34:54 volatility3.framework DEBUG    Traceback (most recent call last):
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\__init__.py", line 185, in import_file
+    importlib.import_module(module)
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1149, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\windows\hashdump.py", line 10, in <module>
+    from Crypto.Cipher import AES, ARC4, DES
+ModuleNotFoundError: No module named 'Crypto'
+
+24-04-03 21:34:54 volatility3.framework DEBUG    Failed to import module volatility3.plugins.windows.hashdump based on file: C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\windows\hashdump.py
+24-04-03 21:34:54 volatility3.framework DEBUG    Traceback (most recent call last):
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\__init__.py", line 185, in import_file
+    importlib.import_module(module)
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1149, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\windows\lsadump.py", line 8, in <module>
+    from Crypto.Cipher import ARC4, DES, AES
+ModuleNotFoundError: No module named 'Crypto'
+
+24-04-03 21:34:54 volatility3.framework DEBUG    Failed to import module volatility3.plugins.windows.lsadump based on file: C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\windows\lsadump.py
+24-04-03 21:34:54 volatility3.plugins.yarascan INFO     Python Yara (>3.8.0) module not found, plugin (and dependent plugins) not available
+24-04-03 21:34:54 volatility3.framework DEBUG    Traceback (most recent call last):
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\__init__.py", line 185, in import_file
+    importlib.import_module(module)
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1149, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\windows\mftscan.py", line 13, in <module>
+    from volatility3.plugins import timeliner, yarascan
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\yarascan.py", line 17, in <module>
+    import yara
+ModuleNotFoundError: No module named 'yara'
+
+24-04-03 21:34:54 volatility3.framework DEBUG    Failed to import module volatility3.plugins.windows.mftscan based on file: C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\windows\mftscan.py
+24-04-03 21:34:55 volatility3.plugins.yarascan INFO     Python Yara (>3.8.0) module not found, plugin (and dependent plugins) not available
+24-04-03 21:34:55 volatility3.framework DEBUG    Traceback (most recent call last):
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\__init__.py", line 185, in import_file
+    importlib.import_module(module)
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1149, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\windows\svcscan.py", line 16, in <module>
+    from volatility3.plugins.windows import poolscanner, vadyarascan, pslist
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\windows\vadyarascan.py", line 11, in <module>
+    from volatility3.plugins import yarascan
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\yarascan.py", line 17, in <module>
+    import yara
+ModuleNotFoundError: No module named 'yara'
+
+24-04-03 21:34:55 volatility3.framework DEBUG    Failed to import module volatility3.plugins.windows.svcscan based on file: C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\windows\svcscan.py
+24-04-03 21:34:55 volatility3.plugins.yarascan INFO     Python Yara (>3.8.0) module not found, plugin (and dependent plugins) not available
+24-04-03 21:34:55 volatility3.framework DEBUG    Traceback (most recent call last):
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\__init__.py", line 185, in import_file
+    importlib.import_module(module)
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1149, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\windows\vadyarascan.py", line 11, in <module>
+    from volatility3.plugins import yarascan
+  File "C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\yarascan.py", line 17, in <module>
+    import yara
+ModuleNotFoundError: No module named 'yara'
+
+24-04-03 21:34:55 volatility3.framework DEBUG    Failed to import module volatility3.plugins.windows.vadyarascan based on file: C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\plugins\windows\vadyarascan.py
+24-04-03 21:34:55 volatility3.cli INFO     The following plugins could not be loaded (use -vv to see why): volatility3.plugins.linux.vmayarascan, volatility3.plugins.windows.cachedump, volatility3.plugins.windows.hashdump, volatility3.plugins.windows.lsadump, volatility3.plugins.windows.mftscan, volatility3.plugins.windows.svcscan, volatility3.plugins.windows.vadyarascan, volatility3.plugins.yarascan
+24-04-03 21:34:55 volatility3.framework Level 6  Importing from the following paths: C:\Users\jmbau\AppData\Local\Programs\Python\Python311\Lib\site-packages\volatility3\framework\automagic
