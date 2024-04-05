@@ -6,10 +6,14 @@ from volatility3.plugins.windows import pslist
 
 #langaugeID imports
 from langdetect import detect_langs #pip install langdetect ---- for some reason BankScanner does not work when this command is not done and langdetect is imported.
+from langdetect.lang_detect_exception import LangDetectException  # Import LangDetectException
+from volatility3.framework import interfaces, constants
+from volatility3.framework.layers import scanners
+from typing import List
+
 import argparse
 import psutil #pip install psutil
 import ctypes
-
 import string
 import os
 
@@ -68,8 +72,8 @@ class BankScanner(interfaces.plugins.PluginInterface):
         
         
         
-class GLASS(interfaces.plugins.PluginInterface):
-    """Custom GLASS plugin with language identification functionality."""
+class LangID(interfaces.plugins.PluginInterface):
+    """Custom GLASS LANGID plugin with language identification functionality."""
 
     _required_framework_version = (2, 0, 0)
 
@@ -79,7 +83,7 @@ class GLASS(interfaces.plugins.PluginInterface):
             requirements.IntRequirement(name='pid', description='Process ID', optional=False),
             requirements.BooleanRequirement(name='langID', description='Language identification', default=False),
         ]
-        
+
     def get_process_text_from_memory(self, pid: int) -> str:
         """Retrieve process text from memory based on PID."""
         
@@ -104,26 +108,28 @@ class GLASS(interfaces.plugins.PluginInterface):
     
         return process_text
 
-    def run(self) -> interfaces.renderers.TreeGrid:
+    def run(self) -> renderers.TreeGrid:
         """Runs the plugin and returns the language distribution."""
-        
         pid = self.config.get('pid')
         lang_id_requested = self.config.get('langID', False)
-        
+
         if pid is None:
-            return renderers.TreeGrid([], [])
+            return renderers.TreeGrid([("Message", str)], [("No PID provided",)])
         
         # Placeholder code for retrieving process text from memory (replace with actual logic)
-        #process_text = "Sample text from process memory"
-        
+        process_text = self.get_process_text_from_memory(pid)
+
         if lang_id_requested:
-            # Perform language identification using langdetect
-            lang_results = detect_langs(process_text)
-            language_distribution = {lang.lang: lang.prob for lang in lang_results}
-            return renderers.TreeGrid(
-                [("Language", str), ("Probability", float)],
-                [(lang, prob) for lang, prob in language_distribution.items()]
-            )
+            try:
+                # Perform language identification using langdetect
+                lang_results = detect_langs(process_text)  # Use detect_langs directly
+                language_distribution = {lang.lang: lang.prob for lang in lang_results}
+                return renderers.TreeGrid(
+                    [("Language", str), ("Probability", float)],
+                    [(lang, prob) for lang, prob in language_distribution.items()]
+                )
+            except LangDetectException as e:
+                return renderers.TreeGrid([("Error", str)], [(str(e),)])
         else:
             # Return process text without language identification
             return renderers.TreeGrid(
