@@ -35,7 +35,9 @@ class Search(interfaces.plugins.PluginInterface):
                 response.raise_for_status()
                 for line in response.text.splitlines():
                     if line.startswith('0.0.0.0 '):
-                        domains.append(line.split()[1])
+                        domain = line.split()[1]
+                        if len(domain) > 4:
+                            domains.append(domain)
             except requests.exceptions.RequestException as e:
                 self.context.log.error(f"Error downloading domains: {e}")
         return domains
@@ -49,10 +51,13 @@ class Search(interfaces.plugins.PluginInterface):
             layer = self.context.layers[layer_name]
             file_path = layer.file_path if hasattr(layer, 'file_path') else 'Unknown'
 
-            for domain in domains:
-                print("seraching for... ",domain)
-                scanner = scanners.MultiStringScanner([domain.encode()])
+            batch_size = 1000
+            for i in range(0, len(domains), batch_size):
+                batch = domains[i:i+batch_size]
+                print(f"Searching for {len(batch)} domains...")
+                scanner = scanners.MultiStringScanner([domain.encode() for domain in batch])
                 for offset, match in layer.scan(context=self.context, scanner=scanner):
+                    domain = next(domain for domain in batch if match.decode('utf-8', errors='ignore') in domain)
                     start = max(0, offset - 32)
                     try:
                         end = min(layer.maximum_address, offset + len(match) + 32)
