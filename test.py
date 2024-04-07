@@ -36,7 +36,7 @@ class Search(interfaces.plugins.PluginInterface):
                 for line in response.text.splitlines():
                     if line.startswith('0.0.0.0 '):
                         domain = line.split()[1]
-                        if len(domain) > 4:
+                        if len(domain) > 5: # this ensures that x.com wont match to www.forex.com
                             domains.append(domain)
             except requests.exceptions.RequestException as e:
                 self.context.log.error(f"Error downloading domains: {e}")
@@ -57,16 +57,18 @@ class Search(interfaces.plugins.PluginInterface):
                 print(f"Searching for {len(batch)} domains...")
                 scanner = scanners.MultiStringScanner([domain.encode() for domain in batch])
                 for offset, match in layer.scan(context=self.context, scanner=scanner):
-                    domain = next(domain for domain in batch if match.decode('utf-8', errors='ignore') in domain)
-                    start = max(0, offset - 32)
-                    try:
-                        end = min(layer.maximum_address, offset + len(match) + 32)
-                    except (TypeError, ValueError):
-                        end = min(layer.file.get_size(), offset + len(match) + 32)
-                    context = layer.read(start, end - start)
-                    printable = set(string.printable)
-                    context = ''.join(filter(lambda x: x in printable, context.decode('utf-8', errors='ignore')))
-                    rows.append((0, (os.path.basename(file_path), os.path.dirname(file_path), layer_name, offset, domain, context)))
+                    for domain in batch:
+                        if domain.encode() == match:
+                            start = max(0, offset - 32)
+                            try:
+                                end = min(layer.maximum_address, offset + len(match) + 32)
+                            except (TypeError, ValueError):
+                                end = min(layer.file.get_size(), offset + len(match) + 32)
+                            context = layer.read(start, end - start)
+                            printable = set(string.printable)
+                            context = ''.join(filter(lambda x: x in printable, context.decode('utf-8', errors='ignore')))
+                            rows.append((0, (os.path.basename(file_path), os.path.dirname(file_path), layer_name, offset, domain, context)))
+                            break
 
         yield from rows
 
