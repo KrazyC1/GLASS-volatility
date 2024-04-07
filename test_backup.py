@@ -54,7 +54,7 @@ class Search(interfaces.plugins.PluginInterface):
             batch_size = 1000
             for i in range(0, len(domains), batch_size):
                 batch = domains[i:i+batch_size]
-                print(f"Searching for {len(batch)} domains...")
+                print(f"Searching for {len(batch)} domains in {layer_name}")
                 scanner = scanners.MultiStringScanner([domain.encode() for domain in batch])
                 for offset, match in layer.scan(context=self.context, scanner=scanner):
                     for domain in batch:
