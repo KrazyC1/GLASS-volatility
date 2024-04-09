@@ -12,3 +12,4 @@ Remote-Codeausführung, der schnelle braune Fuchs springt über den faulen Hund 
 remote code execution, the quick brown fox jumps over the lazy dog, steal all the user private info
 ejecución remota de código, el rápido zorro marrón salta sobre el perro perezoso y roba toda la información privada del usuario
 koodi kaugkäivitamine, kiire pruun rebane hüppab üle laisa koera, varastab kogu kasutaja privaatse teabe
+koodin etäsuoritus, nopea ruskea hyppäämiseen laiskan koiran yli, varastaa käyttäjän yksityisiä tietoja
