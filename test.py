@@ -57,4 +57,12 @@ class Search(interfaces.plugins.PluginInterface):
                     pass
 
     def run(self) -> interfaces.renderers.TreeGrid:
-        return renderers.TreeGrid([("File", str), ("Directory", str), ("Layer", str), ("Offset", int), ("Domain", str), ("Context", str)], self._generator())
+        results = list(self._generator())
+        return renderers.TreeGrid([
+            ("File", str),
+            ("Directory", str),
+            ("Layer", str),
+            ("Offset", int),
+            ("Domain", str),
+            ("Context", str)
+        ], results)
