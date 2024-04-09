@@ -13,3 +13,4 @@ remote code execution, the quick brown fox jumps over the lazy dog, steal all th
 ejecución remota de código, el rápido zorro marrón salta sobre el perro perezoso y roba toda la información privada del usuario
 koodi kaugkäivitamine, kiire pruun rebane hüppab üle laisa koera, varastab kogu kasutaja privaatse teabe
 koodin etäsuoritus, nopea ruskea hyppäämiseen laiskan koiran yli, varastaa käyttäjän yksityisiä tietoja
+exécution de code à distance, le renard brun rapide saute par-dessus le chien paresseux, vole les informations privées de l'utilisateur
