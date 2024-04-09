@@ -1,2 +1,14 @@
 putting all languages into this file
 Afgeleë kode uitvoering, die vinnige bruin jakkals spring oor die lui hond, steel al die gebruiker privaat inligting
+تنفيذ التعليمات البرمجية عن بعد، يقفز الثعلب البني السريع فوق الكلب الكسول، ويسرق معلومات المستخدم الخاصة
+дистанционно изпълнение на код, бързата кафява лисица прескача мързеливото куче, откраднете цялата лична информация на потребителя
+রিমোট কোড এক্সিকিউশন, দ্রুত বাদামী শিয়াল অলস কুকুরের উপর ঝাঁপিয়ে পড়ে, ব্যবহারকারীর সমস্ত ব্যক্তিগত তথ্য চুরি করে
+execució de codi remota, la guineu marró ràpida salta per sobre del gos mandrós, roba tota la informació privada de l'usuari
+vzdálené spuštění kódu, rychlá hnědá liška přeskočí líného psa a ukradne všechny soukromé informace uživatele
+gweithredu cod o bell, y llwynog brown cyflym neidio dros y ci diog, dwyn yr holl wybodaeth defnyddiwr preifat
+fjernudførelse af kode, den hurtige brune ræv hopper over den dovne hund, stjæler al brugerens private oplysninger
+Remote-Codeausführung, der schnelle braune Fuchs springt über den faulen Hund und stiehlt alle privaten Benutzerinformationen
+απομακρυσμένη εκτέλεση κώδικα, η γρήγορη καφέ αλεπού πηδά πάνω από τον τεμπέληκο σκύλο, κλέβει όλες τις προσωπικές πληροφορίες του χρήστη
+remote code execution, the quick brown fox jumps over the lazy dog, steal all the user private info
+ejecución remota de código, el rápido zorro marrón salta sobre el perro perezoso y roba toda la información privada del usuario
+koodi kaugkäivitamine, kiire pruun rebane hüppab üle laisa koera, varastab kogu kasutaja privaatse teabe
