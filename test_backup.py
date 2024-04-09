@@ -6,6 +6,7 @@ from volatility3.framework import interfaces, renderers
 from volatility3.framework.configuration import requirements
 from volatility3.framework.layers import scanners
 from volatility3.plugins.windows import pslist
+from tqdm import tqdm
 
 DOMAIN_TYPES = {
     'malware': 'https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts',
@@ -39,10 +40,9 @@ class Search(interfaces.plugins.PluginInterface):
         domain_type = self.config.get('domain_type', 'malware')
         domains = self._download_domains(domain_type)
 
-        for layer_name in self.context.layers:
+        for layer_name in tqdm(self.context.layers, desc="Scanning layers", unit="layer"):
             layer = self.context.layers[layer_name]
             file_path = layer.file_path if hasattr(layer, 'file_path') else 'Unknown'
-
             scanner = scanners.MultiStringScanner([domain.encode() for domain in domains])
             for offset, match in layer.scan(context=self.context, scanner=scanner):
                 domain = next(domain for domain in domains if domain.encode() == match)
