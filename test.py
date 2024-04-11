@@ -62,5 +62,21 @@ class Search(interfaces.plugins.PluginInterface):
                     pass
 
     def run(self) -> interfaces.renderers.TreeGrid:
+        # ASCII art
+        ascii_art = """
+                                                                                                                    
+                    @@@@                                                                                         
+                    @@@                                                                                          
+    @@@@@@@@@@@@@@  @@@@  @@@@@@@@@@@@@@  @@@@@@@@@@@@@@  @@@@@@@@@@@@@                                           
+    @@@@      @@@@  @@@@            @@@  @@@@            @@@@                                                     
+    @@@@       @@@  @@@@  @@@@@@@@@@@@@@  @@@@@@@@@@@@@@  @@@@@@@@@@@@@                                            
+    @@@@      @@@@  @@@@  @@@@      @@@@            @@@            @@@@                                            
+    @@@@@@@@@@@@@  @@@@   @@@@@@@@@@@@@   @@@@@@@@@@@@@  @@@@@@@@@@@@@                                             
+            @@@@                                                                                                  
+    @@@@@@@@@@@@@@                                                                                                  
+                                                                                                                                                                         
+        """
+        print(ascii_art)
+
         results = list(self._generator())
         return renderers.TreeGrid([("File", str), ("Directory", str), ("Layer", str), ("Offset", int), ("Domain", str), ("Context", str)], results)
