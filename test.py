@@ -40,7 +40,6 @@ class Search(interfaces.plugins.PluginInterface):
     def _generator(self) -> Iterable[Tuple[int, Tuple[str, str, str, int, str, str]]]:
         domain_type = self.config.get('domain_type', 'malware')
         context_length = self.config.get('context', 32)
-
         domains = self._download_domains(domain_type)
 
         for layer_name in tqdm(self.context.layers, desc="Scanning layers", unit="layer"):
@@ -57,6 +56,7 @@ class Search(interfaces.plugins.PluginInterface):
                     context = layer.read(start, end - start)
                     printable = set(string.printable)
                     context = ''.join(filter(lambda x: x in printable, context.decode('utf-8', errors='ignore')))
+                    context += '\n\n--------------------------------------------------------\n'  # Add a newline character
                     yield (0, (os.path.basename(file_path), os.path.dirname(file_path), layer_name, offset, domain, context))
                 except (TypeError, ValueError, UnicodeDecodeError):
                     pass
