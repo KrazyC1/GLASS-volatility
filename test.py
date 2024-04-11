@@ -7,6 +7,7 @@ from volatility3.framework.configuration import requirements
 from volatility3.framework.layers import scanners
 from volatility3.plugins.windows import pslist
 from tqdm import tqdm
+import time
 
 DOMAIN_TYPES = {
     'malware': 'https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts',
@@ -76,7 +77,10 @@ class Search(interfaces.plugins.PluginInterface):
     @@@@@@@@@@@@@@                                                                                                  
                                                                                                                                                                          
         """
-        print(ascii_art)
+        # Print ASCII art line by line with 1 second delay
+        for line in ascii_art.split('\n'):
+            print(line)
+            time.sleep(.15)
 
         results = list(self._generator())
         return renderers.TreeGrid([("File", str), ("Directory", str), ("Layer", str), ("Offset", int), ("Domain", str), ("Context", str)], results)
