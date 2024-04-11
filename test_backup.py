@@ -31,7 +31,7 @@ class Search(interfaces.plugins.PluginInterface):
         try:
             response = requests.get(DOMAIN_TYPES.get(domain_type, ''))
             response.raise_for_status()
-            return [line.split()[1] for line in response.text.splitlines() if line.startswith('0.0.0.0 ') and len(line.split()[1]) > 5]
+            return [line.split()[1] for line in response.text.splitlines() if line.startswith('0.0.0.0 ') and len(line.split()[1]) > 5 and line.split()[1] != '0.0.0.0']
         except requests.exceptions.RequestException as e:
             self.context.log.error(f"Error downloading domains: {e}")
             return []
@@ -58,11 +58,4 @@ class Search(interfaces.plugins.PluginInterface):
 
     def run(self) -> interfaces.renderers.TreeGrid:
         results = list(self._generator())
-        return renderers.TreeGrid([
-            ("File", str),
-            ("Directory", str),
-            ("Layer", str),
-            ("Offset", int),
-            ("Domain", str),
-            ("Context", str)
-        ], results)
+        return renderers.TreeGrid([("File", str), ("Directory", str), ("Layer", str), ("Offset", int), ("Domain", str), ("Context", str) ], results)
