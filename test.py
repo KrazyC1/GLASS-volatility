@@ -24,7 +24,8 @@ class Search(interfaces.plugins.PluginInterface):
         return [
             requirements.ModuleRequirement(name='kernel', description='Windows kernel'),
             requirements.PluginRequirement(name='pslist', plugin=pslist.PsList, version=(2, 0, 0)),
-            requirements.StringRequirement(name='domain_type', description='Type of domains to search for', default='malware', optional=False),
+            requirements.StringRequirement(name='domain_type', description='Type of domains to search for: "porn", "malware", "social", "gambling", "fakenews"', default='malware', optional=False),
+            requirements.IntRequirement(name='context', description='Length of context to display around the domain', default=32, optional=True),
         ]
 
     def _download_domains(self, domain_type: str) -> List[str]:
@@ -38,16 +39,20 @@ class Search(interfaces.plugins.PluginInterface):
 
     def _generator(self) -> Iterable[Tuple[int, Tuple[str, str, str, int, str, str]]]:
         domain_type = self.config.get('domain_type', 'malware')
+        context_length = self.config.get('context', 32)
+
         domains = self._download_domains(domain_type)
 
         for layer_name in tqdm(self.context.layers, desc="Scanning layers", unit="layer"):
             layer = self.context.layers[layer_name]
             file_path = layer.file_path if hasattr(layer, 'file_path') else 'Unknown'
             scanner = scanners.MultiStringScanner([domain.encode() for domain in domains])
+
             for offset, match in layer.scan(context=self.context, scanner=scanner):
                 domain = next(domain for domain in domains if domain.encode() == match)
-                start = max(0, offset - 32)
-                end = min(layer.maximum_address, offset + len(match) + 32)
+                start = max(0, offset - context_length)
+                end = min(layer.maximum_address, offset + len(match) + context_length)
+
                 try:
                     context = layer.read(start, end - start)
                     printable = set(string.printable)
@@ -58,4 +63,4 @@ class Search(interfaces.plugins.PluginInterface):
 
     def run(self) -> interfaces.renderers.TreeGrid:
         results = list(self._generator())
-        return renderers.TreeGrid([("File", str), ("Directory", str), ("Layer", str), ("Offset", int), ("Domain", str), ("Context", str) ], results)
+        return renderers.TreeGrid([("File", str), ("Directory", str), ("Layer", str), ("Offset", int), ("Domain", str), ("Context", str)], results)
