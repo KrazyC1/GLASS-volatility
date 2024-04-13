@@ -65,17 +65,17 @@ class Search(interfaces.plugins.PluginInterface):
     def run(self) -> interfaces.renderers.TreeGrid:
         # ASCII art
         ascii_art = """
-                                                                                                                    
-                    @@@@                                                                                         
-                    @@@                                                                                          
+    *                  *                *                        *                                                  
+                    @@@@                            *                                                            
+        *          @@@      *             *                   *                                                 
     @@@@@@@@@@@@@@  @@@@  @@@@@@@@@@@@@@  @@@@@@@@@@@@@@  @@@@@@@@@@@@@                                           
     @@@@      @@@@  @@@@            @@@  @@@@            @@@@                                                     
     @@@@       @@@  @@@@  @@@@@@@@@@@@@@  @@@@@@@@@@@@@@  @@@@@@@@@@@@@                                            
     @@@@      @@@@  @@@@  @@@@      @@@@            @@@            @@@@                                            
     @@@@@@@@@@@@@  @@@@   @@@@@@@@@@@@@   @@@@@@@@@@@@@  @@@@@@@@@@@@@                                             
-            @@@@                                                                                                  
-    @@@@@@@@@@@@@@                                                                                                  
-                                                                                                                                                                         
+            @@@@                                  *                                                               
+    @@@@@@@@@@@@@@      *              *                                                                            
+    *            *                                        *                                                                                                             
         """
         # Print ASCII art line by line with 1 second delay
         for line in ascii_art.split('\n'):
