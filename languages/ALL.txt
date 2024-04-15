@@ -51,3 +51,9 @@ uzaktan kod çalıştırma, hızlı kahverengi tilki tembel köpeğin üzerinden
 ریموٹ کوڈ پر عمل درآمد، تیز بھوری لومڑی سست کتے پر چھلانگ لگاتی ہے، صارف کی نجی معلومات چوری کرتی ہے
 Thực thi mã từ xa, cáo nâu nhanh nhẹn nhảy qua chó lười, đánh cắp thông tin cá nhân của người dùng
 gweithredu cod o bell, y llwynog brown cyflym neidio dros y ci diog, dwyn yr holl wybodaeth defnyddiwr preifat
+
+
+ISO 639 Language Codes:
+af, ar, bg, bn, ca, cs, cy, da, de, el, en, es, et, fa, fi, fr, gu, he,
+hi, hr, hu, id, it, ja, kn, ko, lt, lv, mk, ml, mr, ne, nl, no, pa, pl,
+pt, ro, ru, sk, sl, so, sq, sv, sw, ta, te, th, tl, tr, uk, ur, vi, zh-cn, zh-tw

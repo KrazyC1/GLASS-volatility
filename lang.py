@@ -1,35 +1,31 @@
 
 #How to RUN
 #-------------------------------------------------------------------------------------------#
-#Step 1 = vol.exe -f "C:\Users\jmbau\OneDrive - Grand Valley State University\Junior Year\Semester 2\Computer and Cyber Forensics\lab3\memdump.mem" windows.memmap.Memmap --pid 4404 --dump
+#Step 1 = vol.exe -f "/path/to/memory/image" windows.memmap.Memmap --pid 4404 --dump
 #   This step dumps a given PID to a .dmp file.
     
 #Step 2 = powershell -> .\strings.exe 4404.dmp > sampleText.txt.abs
 #   This step extracts strings from .dmp file and extracts to .txt file. (inside the same directory)
     
-#Step 3 = vol.exe -f "C:\Users\jmbau\OneDrive - Grand Valley State University\Junior Year\Semester 2\Computer and Cyber Forensics\lab3\memdump.mem" -p . plugin.LangIDTEXT --pid 4404 --langID --text-file sampleText.txt  
+#Step 3 = vol.exe -f "/path/to/memory/image" -p . plugin.LangIDTEXT --pid 4404 --langID --text-file sampleText.txt  
 #   This step analyzes the .txt file and provides language analysis.
 
 
 #Notes:
-#Still working on automatization of the process but this works right now.
+#Still working on automatization of the process but this works right now. It could be improved in the future.
 #Encountered difficulty reading strings from process memory in PID, so we had to dump it to extract it.
 #-------------------------------------------------------------------------------------------#   
 
 import os
 import string
-
 from typing import Iterable, Tuple, List
 from volatility3.framework import interfaces, constants, renderers
 from volatility3.framework.configuration import requirements
 from volatility3.framework.layers import scanners
 from volatility3.plugins.windows import pslist
-
 from volatility3.framework.objects import utility
 from volatility3.framework import exceptions
 from volatility3.framework.interfaces import configuration
-from volatility3.framework.renderers import format_hints
-
 #langaugeID imports
 from langdetect import detect_langs
 from langdetect.lang_detect_exception import LangDetectException
@@ -67,7 +63,6 @@ class languageID(interfaces.plugins.PluginInterface):
         #maybe different text files later?
         text_file = os.path.join(os.path.dirname(__file__), config['text_file'])  # Use relative path
         #text_file = os.path.join(os.path.dirname(__file__), 'languages', 'ALL.txt') #gets ALL.txt from languages folder.
-        #print(text_file) #able to get the strings
         
         if lang_id_requested:
             return renderers.TreeGrid([("PID", int), ("Language Distribution", str)], self._generator(pid, text_file))
