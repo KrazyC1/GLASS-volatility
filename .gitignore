@@ -1,6 +1,5 @@
 lab3.raw
 vol.mem
 vol.raw
-\__pycache__
+__pycache__/*
 memdump.mem
-__pycache__

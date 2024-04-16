@@ -1,0 +1,4 @@
+# DO NOT PUT DOWN DEFAULT PYTHON LIBRARIES!
+requests
+tdqm
+typing
