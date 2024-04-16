@@ -1,24 +1,23 @@
 import os
 import string
-import psutil
-import ctypes
+
 import requests
-from tqdm import tqdm
+from tqdm import tqdm #when imported, causes DllList to stop working.
 import time
 
 from typing import Iterable, Tuple, List
-from volatility3.framework import interfaces, constants, renderers
+from volatility3.framework import interfaces, renderers
 from volatility3.framework.configuration import requirements
-from volatility3.framework.layers import scanners#, registry
+from volatility3.framework.layers import scanners
 from volatility3.plugins.windows import pslist
 
 from volatility3.framework.objects import utility
 from volatility3.framework import exceptions
 from volatility3.framework.interfaces import configuration
-from volatility3.framework.renderers import format_hints
 #langaugeID imports
 from langdetect import detect_langs
 from langdetect.lang_detect_exception import LangDetectException
+
 
 DOMAIN_TYPES = {
     'malware': 'https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts',
@@ -92,11 +91,12 @@ class domain(interfaces.plugins.PluginInterface):  # to run this do GLASS.domain
         results = list(self._generator())
         return renderers.TreeGrid([("File", str), ("Directory", str), ("Layer", str), ("Offset", int), ("Domain", str), ("Context", str)], results)
 
+
 #new plugin class
 class DllList(interfaces.plugins.PluginInterface):
      # This plugin basically lists all the dlls that may be loaded in the processes
      # Hopefully this helps you with figuring out how to do PID stuff
-     # to run this plugin run the following command - vol.exe -f lab3.raw -p . example.DllList
+     # to run this plugin run the following command - vol.exe -f lab3.raw -p . GLASS.DllList
 
     _version = (1, 0, 0)
     _required_framework_version = (2, 0, 0)
@@ -186,12 +186,11 @@ class findPID(interfaces.plugins.PluginInterface):
         yield from rows
 
 
-class LangID(interfaces.plugins.PluginInterface):
+class langID(interfaces.plugins.PluginInterface):
     #Custom GLASS LANGID plugin with language identification functionality.
 
     _required_framework_version = (2, 0, 0)
 
- 
     @classmethod
     def get_requirements(cls) -> List[interfaces.configuration.RequirementInterface]:
         return [
@@ -219,7 +218,6 @@ class LangID(interfaces.plugins.PluginInterface):
         #maybe different text files later?
         text_file = os.path.join(os.path.dirname(__file__), config['text_file'])  # Use relative path
         #text_file = os.path.join(os.path.dirname(__file__), 'languages', 'ALL.txt') #gets ALL.txt from languages folder.
-        #print(text_file) #able to get the strings
         
         if lang_id_requested:
             return renderers.TreeGrid([("PID", int), ("Language Distribution", str)], self._generator(pid, text_file))
@@ -229,7 +227,6 @@ class LangID(interfaces.plugins.PluginInterface):
     def _generator(self, pid: int, text_file: str) -> Iterable[Tuple[int, Tuple[int, str]]]:
         """Generator method to yield language distributions."""
         
-        #strings_to_check = set(self._get_strings_from_text_file(text_file))  # Convert to set for faster lookup
         strings_to_check = set(self._get_strings_from_text_file(text_file, encoding='utf-16'))
         process_text = " ".join(strings_to_check)  # Concatenate strings for langDetect
         
@@ -254,10 +251,22 @@ class LangID(interfaces.plugins.PluginInterface):
         yield from rows
 
                 
-        #How to RUN
-        #vol.exe -f "C:\Users\jmbau\OneDrive - Grand Valley State University\Junior Year\Semester 2\Computer and Cyber Forensics\lab3\memdump.mem" windows.memmap.Memmap --pid 4404 --dump
-        #powershell -> .\strings.exe 4404.dmp > sampleText.txt
-        #vol.exe -f "C:\Users\jmbau\OneDrive - Grand Valley State University\Junior Year\Semester 2\Computer and Cyber Forensics\lab3\memdump.mem" -p . plugin.LangIDTEXT --pid 4404 --langID --text-file sampleText.txt  
+            #How to RUN
+    #-------------------------------------------------------------------------------------------#
+    #Step 1 = vol.exe -f "/path/to/memory/image" windows.memmap.Memmap --pid 4404 --dump
+    #   This step dumps a given PID to a .dmp file.
+        
+    #Step 2 = powershell -> .\strings.exe 4404.dmp > sampleText.txt.abs
+    #   This step extracts strings from .dmp file and extracts to .txt file. (inside the same directory)
+        
+    #Step 3 = vol.exe -f "/path/to/memory/image" -p . plugin.LangID --pid 4404 --langID --text-file sampleText.txt  
+    #   This step analyzes the .txt file and provides language analysis.
+
+
+    #Notes:
+    #Still working on automatization of the process but this works right now. It could be improved in the future.
+    #Encountered difficulty reading strings from process memory in PID, so we had to dump it to extract it.
+    #-------------------------------------------------------------------------------------------#     
         
 
 

@@ -19,7 +19,7 @@
 import os
 import string
 from typing import Iterable, Tuple, List
-from volatility3.framework import interfaces, constants, renderers
+from volatility3.framework import interfaces, renderers
 from volatility3.framework.configuration import requirements
 from volatility3.framework.layers import scanners
 from volatility3.plugins.windows import pslist
