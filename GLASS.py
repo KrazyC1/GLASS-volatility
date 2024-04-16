@@ -186,7 +186,7 @@ class findPID(interfaces.plugins.PluginInterface):
         yield from rows
 
 
-class LangIDTEXT(interfaces.plugins.PluginInterface):
+class LangID(interfaces.plugins.PluginInterface):
     #Custom GLASS LANGID plugin with language identification functionality.
 
     _required_framework_version = (2, 0, 0)
