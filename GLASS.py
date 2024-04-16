@@ -28,7 +28,7 @@ DOMAIN_TYPES = {
     'social': 'https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/social-only/hosts'
 }
 
-class Search(interfaces.plugins.PluginInterface):
+class domain(interfaces.plugins.PluginInterface):  # to run this do GLASS.domain --type
     _required_framework_version = (2, 0, 0)
 
     @classmethod
@@ -36,7 +36,7 @@ class Search(interfaces.plugins.PluginInterface):
         return [
             requirements.ModuleRequirement(name='kernel', description='Windows kernel'),
             requirements.PluginRequirement(name='pslist', plugin=pslist.PsList, version=(2, 0, 0)),
-            requirements.StringRequirement(name='domain_type', description='Type of domains to search for: "porn", "malware", "social", "gambling", "fakenews"', default='malware', optional=False),
+            requirements.StringRequirement(name='type', description='Type of domains to search for: "porn", "malware", "social", "gambling", "fakenews"', default='malware', optional=False),
             requirements.IntRequirement(name='context', description='Length of context to display around the domain', default=32, optional=True),
         ]
 
