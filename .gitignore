@@ -1,5 +1,7 @@
+# Please be careful when editing this :))))
 *.raw
 *.mem
 *.vmem
 __pycache__/*
 !__pycache__/.gitkeep
+angID
