@@ -3,3 +3,4 @@ requests
 tdqm
 typing
 langdetect
+volatility3
