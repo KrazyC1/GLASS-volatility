@@ -2,3 +2,4 @@
 requests
 tdqm
 typing
+langdetect
