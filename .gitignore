@@ -1,5 +1,5 @@
-lab3.raw
-vol.mem
-vol.raw
+*.raw
+*.mem
+*.vmem
 __pycache__/*
-memdump.mem
+!__pycache__/.gitkeep
