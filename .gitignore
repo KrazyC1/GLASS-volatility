@@ -5,3 +5,5 @@
 __pycache__/*
 !__pycache__/.gitkeep
 angID
+backup code/__pycache__/*
+!backup code/__pycache__/.gitkeep
