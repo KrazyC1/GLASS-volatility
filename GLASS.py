@@ -1,8 +1,7 @@
 import os
 import string
-
 import requests
-from tqdm import tqdm #when imported, causes DllList to stop working.
+from tqdm import tqdm
 import time
 
 from typing import Iterable, Tuple, List
@@ -10,7 +9,6 @@ from volatility3.framework import interfaces, renderers
 from volatility3.framework.configuration import requirements
 from volatility3.framework.layers import scanners
 from volatility3.plugins.windows import pslist
-
 from volatility3.framework.objects import utility
 from volatility3.framework import exceptions
 from volatility3.framework.interfaces import configuration
