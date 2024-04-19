@@ -1,3 +1,4 @@
+![GLASS(5)](https://github.com/KrazyC1/GLASS-volatility/assets/104690837/f742dfe2-0a93-4f60-ae4c-dc412189fd06)
 # GLASS-volatility
 GLASS (Global Language And Site Scanner) is a Volatility plugin designed by Clayton Wenzel, James Baumhardt, and Nathan Eberly, aiming to swiftly identify and classify malicious domains and unexpected languages within a memory dump, providing users with dynamic insights for forensic investigations.
 
